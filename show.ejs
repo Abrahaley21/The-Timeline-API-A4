@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>View post</title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <main class="container">
+            <p><a href="/">← Back to timeline</a></p>
+            <article class="panel">
+                <h1><%= post.authorName %></h1>
+                <p><%= post.post %></p>
+            </article>
+            <h2>Comments</h2>
+            <% comments.forEach(comment => { %>
+                <article class="panel">
+                    <strong><%= comment.authorName %></strong>
+                    <p><%= comment.comment %></p>
+                </article>
+            <% }) %>
+            <form action="/posts/<%= post._id %>/comments" method="POST" class="panel">
+                <h3>Add a comment (minimum 25 characters)</h3>
+                <label>Your name</label>
+                <input name="authorName" required minlength="2">
+                <label>Comment</label>
+                <textarea name="comment" required minlength="25"></textarea>
+                <button>Add comment</button>
+            </form>
+        </main>
+    </body>
+</html>

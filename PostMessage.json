@@ -1,0 +1,96 @@
+{
+  "info": {
+    "name": "The Timeline API - Assignment 4",
+    "description": "Post CRUD and comment GET/POST. Import into Postman and set collection variables.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "postId",
+      "value": "PASTE_A_POST_ID_HERE"
+    }
+  ],
+  "item": [
+    {
+      "name": "Posts and comments",
+      "item": [
+        {
+          "name": "GET - Get all posts",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/get-posts"
+          }
+        },
+        {
+          "name": "POST - Create post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"authorName\": \"Alex\",\n  \"post\": \"This is my first Timeline API post with enough characters.\"\n}"
+            },
+            "url": "{{baseUrl}}/api/create-post"
+          }
+        },
+        {
+          "name": "PUT - Edit post",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"authorName\": \"Alex Updated\",\n  \"post\": \"This updated Timeline API post has more than twenty five characters.\"\n}"
+            },
+            "url": "{{baseUrl}}/api/edit-post/{{postId}}"
+          }
+        },
+        {
+          "name": "DELETE - Delete post",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/delete-post/{{postId}}"
+          }
+        },
+        {
+          "name": "GET - Get comments for post",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/get-post-comments/{{postId}}"
+          }
+        },
+        {
+          "name": "POST - Create comment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"authorName\": \"Sam\",\n  \"comment\": \"This is a useful comment with more than twenty five characters.\"\n}"
+            },
+            "url": "{{baseUrl}}/api/post-post-comment/{{postId}}"
+          }
+        }
+      ]
+    }
+  ]
+}

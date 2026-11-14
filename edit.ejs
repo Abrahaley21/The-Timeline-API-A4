@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Edit post</title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <main class="container">
+            <h1>Edit post</h1>
+            <form action="/posts/<%= post._id %>/update" method="POST" class="panel">
+                <label>Author name</label>
+                <input name="authorName" value="<%= post.authorName %>" required minlength="2">
+                <label>Post (minimum 25 characters)</label>
+                <textarea name="post" required minlength="25"><%= post.post %></textarea>
+                <button>Save changes</button>
+            </form>
+            <p><a href="/">Back to timeline</a></p>
+        </main>
+    </body>
+</html>

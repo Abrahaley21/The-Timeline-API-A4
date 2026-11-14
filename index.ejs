@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>The Timeline</title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <main class="container">
+            <h1>The Timeline</h1>
+            <p>Browser routes retained from the previous project. Use Postman to test API endpoints.</p>
+            <form action="/createpost" method="POST" class="panel">
+                <h2>Create a post</h2>
+                <label>Author name</label>
+                <input name="authorName" required minlength="2">
+                <label>Post (minimum 25 characters)</label>
+                <textarea name="post" required minlength="25"></textarea>
+                <button>Create post</button>
+            </form>
+            <h2>Posts</h2>
+            <% if (!posts.length) { %>
+                <p>No posts yet.</p>
+            <% } %>
+            <% posts.forEach(post => { %>
+                <article class="panel">
+                    <h3><%= post.authorName %></h3>
+                    <p><%= post.post %></p>
+                    <small><%= new Date(post.createdAt).toLocaleString() %></small>
+                    <p>
+                        <a href="/posts/<%= post._id %>">View comments</a> | 
+                        <a href="/posts/<%= post._id %>/edit">Edit</a>
+                    </p>
+                    <form action="/posts/<%= post._id %>/delete" method="POST">
+                        <button class="danger">Delete</button>
+                    </form>
+                </article>
+            <% }) %>
+        </main>
+    </body>
+</html>
